@@ -11,7 +11,7 @@
 				"name": "J\u00fcrgen Knauth"
 			}
 		],
-		"description": "This python tool provides alternatives and supplements to classic Linux system tools.",
+		"description": "This python module provides alternatives and supplements to classic Linux command line tools.",
 		"development_status": "stable",
 		"keywords": [
 			"cli",
@@ -20,7 +20,7 @@
 		"license": "Apache2",
 		"name": "jk_systools",
 		"packageClass": "python-module",
-		"version": "0.2024.4.24"
+		"version": "0.2024.11.3"
 	},
 	"repositories": [
 		{

@@ -11,7 +11,7 @@ authors = [
 maintainers = [
 	{ name = "Jürgen Knauth", email = "pubsrc@binary-overflow.de" },
 ]
-description = "This python tool provides alternatives and supplements to classic Linux system tools."
+description = "This python module provides alternatives and supplements to classic Linux command line tools."
 readme = "README.md"
 requires-python = ">=3.8"
 keywords = [
