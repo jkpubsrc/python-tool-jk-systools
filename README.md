@@ -4,7 +4,7 @@
 Introduction
 ------------
 
-This python tool provides alternatives and supplements to classic Linux system tools.
+This python tool provides alternatives and additions to classic Linux system tools.
 
 Information about this module can be found here:
 
