@@ -32,6 +32,7 @@ dependencies = [
 	"jk_console >= 0.2025.2.23",
 	"jk_mounting >= 0.2025.3.2",
 	"jk_sysinfo >= 0.2024.9.18.3",
+	"jk_flexdata >= 0.2025.3.2",
 ]
 
 #[project.urls]
