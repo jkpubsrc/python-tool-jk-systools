@@ -49,6 +49,10 @@ class AbstractCLICmd(object):
 		raise NotImplementedError()
 	#
 
+	def execute(self, appRuntime, *cmdArgs, log:jk_logging.AbstractLogger) -> int:
+		raise NotImplementedError()
+	#
+
 	################################################################################################################################
 	## Public Methods
 	################################################################################################################################
