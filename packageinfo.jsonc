@@ -20,7 +20,7 @@
 		"license": "Apache2",
 		"name": "jk_systools",
 		"packageClass": "python-module",
-		"version": "0.2024.11.3"
+		"version": "0.2025.3.2"
 	},
 	"repositories": [
 		{
