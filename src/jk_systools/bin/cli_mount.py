@@ -63,8 +63,8 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 	def runImpl(self, ctx:jk_systools.CLIRunCtx) -> int:
 		mounter = jk_mounting.Mounter()
 
-		interesting = []
-		for mi in mounter.getMountInfos2(isRegularDevice = True, isNetworkDevice=True):
+		interesting:typing.List[jk_mounting.MountInfo] = []
+		for mi in mounter.getMountInfos2(isRegularDevice=True, isNetworkDevice=True, isFuseDevice=True):
 			interesting.append(mi)
 		interesting.sort(key=lambda x: x.mountPoint)
 

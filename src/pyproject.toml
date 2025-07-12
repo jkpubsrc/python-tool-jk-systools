@@ -30,7 +30,7 @@ dependencies = [
 	"jk_typing >= 0.2025.2.1",
 	"jk_logging >= 0.2025.1.26",
 	"jk_console >= 0.2025.2.23.1",
-	"jk_mounting >= 0.2025.3.2",
+	"jk_mounting >= 0.2025.7.11",
 	"jk_sysinfo >= 0.2024.9.18.3",
 	"jk_flexdata >= 0.2025.3.2",
 ]

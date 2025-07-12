@@ -9,6 +9,7 @@ import jk_typing
 import jk_console
 import jk_sysinfo
 import jk_flexdata
+# import jk_json
 
 import jk_systools
 
@@ -19,7 +20,12 @@ from ._DataCtx import _DataCtx
 
 
 
-
+#
+# IMPLEMENTATION NOTES:
+#
+# This application iterates over lsblk devices.
+# For some reasons some devices might not be listed there.
+#
 class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 
 	################################################################################################################################
@@ -58,14 +64,21 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 	## Helper Methods
 	################################################################################################################################
 
+	# def ____checkAccept(self, data_lsblk:jk_flexdata.FlexObject) -> bool:
+	# 	if data_lsblk.mountpoint and data_lsblk.mountpoint.startswith("/snap"):
+	# 		return False
+	# 
+	# 	return True
+	# #
+
 	def __collectAllSizeValues(self,
 		ctx:_DataCtx,
 		outSpaceUsed:typing.List[float],
 		outSpaceFree:typing.List[float],
 		outSpaceTotal:typing.List[float],
 	):
-		if ctx.data_lsblk.mountpoint and ctx.data_lsblk.mountpoint.startswith("/snap"):
-			return
+		# if not self.____checkAccept(ctx.data_lsblk):
+		# 	return
 
 		if ctx.data_mounts and ctx.data_lsblk.mountpoint:
 			data_df_2 = ctx.data_df._get(ctx.data_lsblk.mountpoint)
@@ -100,8 +113,8 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 
 	@jk_typing.checkFunctionSignature()
 	def __printDeviceHierarchical(self, ctx:_DataCtx, indent:str=""):
-		if ctx.data_lsblk.mountpoint and ctx.data_lsblk.mountpoint.startswith("/snap"):
-			return
+		# if not self.____checkAccept(ctx.data_lsblk):
+		# 	return
 
 		s = indent + ctx.data_lsblk.dev
 
@@ -165,8 +178,8 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 	#
 	@jk_typing.checkFunctionSignature()
 	def __printDeviceFlat(self, ctx:_DataCtx, table:jk_console.SimpleTable):
-		if ctx.data_lsblk.mountpoint and ctx.data_lsblk.mountpoint.startswith("/snap"):
-			return
+		# if not self.____checkAccept(ctx.data_lsblk):
+		# 	return
 
 		_devPath = ctx.data_lsblk.dev
 		_mountPoint = ctx.data_lsblk.mountpoint
@@ -192,7 +205,7 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 					_devPath,
 					_fsLabel,
 					_fstype,
-					"{} {}".format(_filledPerCent, _filledChartC),
+					"{:>5} {}".format(_filledPerCent, _filledChartC),
 					_spaceTotal,
 					_spaceUsed,
 					_spaceFree,
@@ -244,8 +257,16 @@ class MainApp(jk_systools.AbstractMultiCmdCLIApp):
 	################################################################################################################################
  
 	def runImpl(self, ctx:jk_systools.CLIRunCtx) -> int:
+		jLsBlk = []
+		for jDict in jk_sysinfo.get_lsblk()["deviceTree"]:
+			if jDict.get("mountpoint") and jDict["mountpoint"].startswith("/snap"):
+				continue
+			jLsBlk.append(jDict)
+		# jk_json.prettyPrint(jLsBlk)
+
 		ctx = _DataCtx(
-			data_lsblk = jk_flexdata.createFromData(jk_sysinfo.get_lsblk()),
+			#data_lsblk = jk_flexdata.createFromData(jk_sysinfo.get_lsblk()),
+			data_lsblk = jk_flexdata.createFromData({ "deviceTree": jLsBlk }),
 			data_mounts = jk_flexdata.createFromData(jk_sysinfo.get_mount()),
 			data_df = jk_flexdata.createFromData(jk_sysinfo.get_df()),
 		)
