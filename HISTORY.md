@@ -15,3 +15,7 @@
 	* Updated: Dependencies
 	* Improved: Listing devices
 	* Improved: Minor formatting bugs
+
+* 2025-08-24:
+	* Fixed: Missing dependencies
+

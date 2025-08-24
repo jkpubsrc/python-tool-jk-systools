@@ -26,6 +26,8 @@ classifiers = [
 	"Programming Language :: Python :: 3",
 ]
 dependencies = [
+	"tqdm >= 4.67.1",
+	"jk_dirwalker >= 0.2025.2.15",
 	"jk_argparsing >= 0.2024.12.23",
 	"jk_typing >= 0.2025.2.1",
 	"jk_logging >= 0.2025.1.26",
